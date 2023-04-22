@@ -12,8 +12,8 @@ export const SearchPage = () => {
     const { q = '' } = queryString.parse(location.search);
     const heroes = getHeroesByName(q);
 
-    const showSearch = (q==='');
-    const showError = (heroes.lengt!==0) && (q==='');
+    const showSearch = (q.length === 0);
+    const showError  = (q.length > 0) && heroes.length === 0;
 
     const { searchText, onInputChange } = useForm({
         searchText: q
@@ -21,7 +21,6 @@ export const SearchPage = () => {
 
     const onSearchSubmit = (event) => {
         event.preventDefault();
-        // if(searchText.trim().length <= 1) return;
         navigate(`?q=${ searchText }`); 
     }
 
